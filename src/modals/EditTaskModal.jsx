@@ -18,7 +18,7 @@ const EditTaskModal = ({
   // const { data, isLoading } = useQuery({
   //   queryKey: [taskData],
   //   queryFn: () =>
-  //     fetch(`http://localhost:3000/api/tasks/id/${taskData?._id}`).then(res =>
+  //     fetch(`https://coder-squad-task-management-server.onrender.com/api/tasks/id/${taskData?._id}`).then(res =>
   //       res.json()
   //     ),
   // });
@@ -31,15 +31,20 @@ const EditTaskModal = ({
       date: data.date,
       taskOf: taskData?._id,
     };
-    axios.put(`http://localhost:3000/api/tasks`, task).then(res => {
-      if (res.status === 200) {
-        reset();
-        setOpenEditTaskModal(false);
-        navigate('/');
-        refetch();
-        toast.success(`Task added successfully`);
-      }
-    });
+    axios
+      .put(
+        `https://coder-squad-task-management-server.onrender.com/api/tasks`,
+        task
+      )
+      .then(res => {
+        if (res.status === 200) {
+          reset();
+          setOpenEditTaskModal(false);
+          navigate('/');
+          refetch();
+          toast.success(`Task added successfully`);
+        }
+      });
   };
 
   return (

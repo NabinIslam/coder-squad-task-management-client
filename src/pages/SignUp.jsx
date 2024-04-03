@@ -18,7 +18,10 @@ const SignUp = () => {
 
   const handleSignUp = data => {
     axios
-      .post(`http://localhost:3000/api/auth/signup`, data)
+      .post(
+        `https://coder-squad-task-management-server.onrender.com/api/auth/signup`,
+        data
+      )
       .then(res => {
         if (res.data.success) {
           navigate('/sign-in');

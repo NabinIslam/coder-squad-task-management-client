@@ -20,11 +20,13 @@ const SignIn = () => {
   const { storeToken } = useAuth();
   const navigate = useNavigate();
   const { refetch } = useFetchTasks();
-  
 
   const handleSignIn = data => {
     axios
-      .post(`http://localhost:3000/api/auth/signin`, data)
+      .post(
+        `https://coder-squad-task-management-server.onrender.com/api/auth/signin`,
+        data
+      )
       .then(res => {
         if (res.status === 200) {
           storeToken(res.data.token);
@@ -34,8 +36,6 @@ const SignIn = () => {
         }
       })
       .catch(err => {
-      
-
         toast.error(err?.response?.data?.message);
       });
   };

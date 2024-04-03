@@ -7,7 +7,9 @@ const useFetchTasks = (page = '') => {
   const { data, isLoading, isFetching, refetch } = useQuery({
     queryKey: [page],
     queryFn: () =>
-      fetch(`http://localhost:3000/api/tasks/user/id/${user._id}?page=${page}`)
+      fetch(
+        `https://coder-squad-task-management-server.onrender.com/api/tasks/user/id/${user._id}?page=${page}`
+      )
         .then(res => res.json())
         .catch(err => console.error(err)),
   });

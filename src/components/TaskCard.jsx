@@ -14,7 +14,9 @@ const TaskCard = ({ task, refetch }) => {
 
   const handleDeleteTask = () => {
     axios
-      .delete(`http://localhost:3000/api/tasks/id/${_id}`)
+      .delete(
+        `https://coder-squad-task-management-server.onrender.com/api/tasks/id/${_id}`
+      )
       .then(res => {
         if (res.status === 200) {
           refetch();
@@ -34,7 +36,10 @@ const TaskCard = ({ task, refetch }) => {
     };
 
     axios
-      .put(`http://localhost:3000/api/tasks/id/${task._id}`, updatedTask)
+      .put(
+        `https://coder-squad-task-management-server.onrender.com/api/tasks/id/${task._id}`,
+        updatedTask
+      )
       .then(res => {
         if (res.status === 200) {
           if (pathname === '/completed') {
@@ -62,7 +67,10 @@ const TaskCard = ({ task, refetch }) => {
     };
 
     axios
-      .put(`http://localhost:3000/api/tasks/id/${task._id}`, updatedTask)
+      .put(
+        `https://coder-squad-task-management-server.onrender.com/api/tasks/id/${task._id}`,
+        updatedTask
+      )
       .then(res => {
         if (res.status === 200) {
           if (res.status === 200) {

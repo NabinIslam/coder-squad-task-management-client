@@ -30,7 +30,10 @@ const AddTaskModal = ({ openAddTaskModal, setOpenAddTaskModal, refetch }) => {
     };
 
     axios
-      .post(`http://localhost:3000/api/tasks`, task)
+      .post(
+        `https://coder-squad-task-management-server.onrender.com/api/tasks`,
+        task
+      )
       .then(res => {
         if (res.status === 200) {
           reset();

@@ -23,11 +23,14 @@ const AuthProvider = ({ children }) => {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:3000/api/auth/user`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      })
+      .get(
+        `https://coder-squad-task-management-server.onrender.com/api/auth/user`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      )
       .then(res => {
         setUser(res.data);
       });

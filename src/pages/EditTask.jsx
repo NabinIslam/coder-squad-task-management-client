@@ -13,7 +13,9 @@ const EditTask = () => {
   const { data, isLoading, isFetching } = useQuery({
     queryKey: ['task'],
     queryFn: () =>
-      fetch(`http://localhost:3000/api/tasks/id/${id}`).then(res => res.json()),
+      fetch(
+        `https://coder-squad-task-management-server.onrender.com/api/tasks/id/${id}`
+      ).then(res => res.json()),
   });
   const { register, handleSubmit, reset } = useForm();
   const navigate = useNavigate();
@@ -31,7 +33,10 @@ const EditTask = () => {
     };
 
     axios
-      .put(`http://localhost:3000/api/tasks/id/${id}`, updatedTask)
+      .put(
+        `https://coder-squad-task-management-server.onrender.com/api/tasks/id/${id}`,
+        updatedTask
+      )
       .then(res => {
         if (res.status === 200) {
           reset();
@@ -50,7 +55,9 @@ const EditTask = () => {
   return (
     <main className="bg-black min-h-screen">
       <div className="max-w-md mx-auto min-h-screen flex flex-col items-center justify-center p-4">
-        <h1 className="text-white text-center font-bold text-2xl mb-5">Edit Task</h1>
+        <h1 className="text-white text-center font-bold text-2xl mb-5">
+          Edit Task
+        </h1>
         <form
           className="min-w-full"
           action=""
