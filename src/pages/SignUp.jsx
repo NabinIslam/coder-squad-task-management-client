@@ -5,18 +5,22 @@ import toast from 'react-hot-toast';
 import { Link, useNavigate } from 'react-router-dom';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { signUpSchema } from '../validators/validators';
+import { useAuth } from '../context/auth';
 
 const SignUp = () => {
+  const { isSubmitting, setIsSubmitting } = useAuth();
   const {
     register,
     handleSubmit,
-    formState: { errors, isSubmitting },
+    formState: { errors },
   } = useForm({
     resolver: zodResolver(signUpSchema),
   });
   const navigate = useNavigate();
 
   const handleSignUp = data => {
+    setIsSubmitting(true);
+
     axios
       .post(
         `https://coder-squad-task-management-server.onrender.com/api/auth/signup`,
@@ -30,7 +34,8 @@ const SignUp = () => {
       })
       .catch(err => {
         toast.error(err.response.data.message);
-      });
+      })
+      .finally(() => setIsSubmitting(false));
   };
 
   return (

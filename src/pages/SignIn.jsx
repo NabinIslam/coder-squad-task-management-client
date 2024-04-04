@@ -10,10 +10,11 @@ import { signInSchema } from '../validators/validators';
 import { useState } from 'react';
 
 const SignIn = () => {
+  const { isSubmitting, setIsSubmitting } = useAuth();
   const {
     register,
     handleSubmit,
-    formState: { errors, isSubmitting },
+    formState: { errors },
   } = useForm({
     resolver: zodResolver(signInSchema),
   });
@@ -22,6 +23,7 @@ const SignIn = () => {
   const { refetch } = useFetchTasks();
 
   const handleSignIn = data => {
+    setIsSubmitting(true);
     axios
       .post(
         `https://coder-squad-task-management-server.onrender.com/api/auth/signin`,
@@ -37,7 +39,8 @@ const SignIn = () => {
       })
       .catch(err => {
         toast.error(err?.response?.data?.message);
-      });
+      })
+      .finally(() => setIsSubmitting(false));
   };
 
   return (
@@ -89,7 +92,7 @@ const SignIn = () => {
               className="bg-blue-600 hover:bg-blue-700 font-semibold text-white px-5 py-2 rounded-full duration-150"
               disabled={isSubmitting}
             >
-              {isSubmitting ? 'Signing in' : 'Sign In'}
+              {isSubmitting ? 'Signing in...' : 'Sign In'}
             </button>
           </div>
         </form>

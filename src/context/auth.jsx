@@ -7,6 +7,7 @@ const AuthProvider = ({ children }) => {
   const [token, setToken] = useState(localStorage.getItem('token'));
   const [user, setUser] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const storeToken = token => {
     setToken(token);
@@ -46,6 +47,8 @@ const AuthProvider = ({ children }) => {
         setUser,
         isLoading,
         setIsLoading,
+        isSubmitting,
+        setIsSubmitting,
       }}
     >
       {children}
