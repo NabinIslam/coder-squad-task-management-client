@@ -26,6 +26,8 @@ const Root = () => {
     toast.success(`Logout successful`);
   };
 
+  if (isloggedIn && !user) return <LoadingSpinner />;
+
   return (
     <main className="min-h-screen bg-black p-[20px] text-[#dfe6e9] flex flex-col lg:flex-row gap-[50px]">
       <div className="min-h-full border border-gray-700 rounded-xl bg-[#212120] basis-[30%] flex flex-col justify-between items-start">
