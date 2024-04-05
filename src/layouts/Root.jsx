@@ -11,7 +11,7 @@ import { GiHamburgerMenu } from 'react-icons/gi';
 import LoadingSpinner from '../ui/LoadingSpinner';
 
 const Root = () => {
-  const { logOut, user } = useAuth();
+  const { logOut, user, isloggedIn } = useAuth();
   const navigate = useNavigate();
 
   const navLinks = [
@@ -25,8 +25,6 @@ const Root = () => {
     navigate('/sign-in');
     toast.success(`Logout successful`);
   };
-
-  if (!user) return <LoadingSpinner />;
 
   return (
     <main className="min-h-screen bg-black p-[20px] text-[#dfe6e9] flex flex-col lg:flex-row gap-[50px]">
